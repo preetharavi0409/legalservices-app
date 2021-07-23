@@ -1,0 +1,260 @@
+<!-- Title group  -->
+<div class="title-group">
+    <h1 class="mat-h1">Update Case</h1>
+    <mat-divider fxFlex="1 0"></mat-divider>
+  </div>
+  
+  <!-- Form -->
+  <div class="inner-wrapper">
+    <form [formGroup]="caseForm" (ngSubmit)="updateCaseForm()" #resetStudentForm="ngForm" novalidate autocomplete="off" >
+  
+        <!-- Left block -->
+        <mat-card class="TwoColumnLeft">
+            <div class="controlers-wrapper">
+              <!-- Name -->
+              <mat-form-field>
+                <mat-label>Case Type</mat-label>
+                <mat-select [(value)]="selectedType" formControlName="mcasetype">
+                  <mat-option [value]="typeArray" *ngFor="let typeArray of typeArray">{{typeArray}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="handleError('mcasetype', 'required')">
+                  Case Type is required
+                </mat-error> 
+              </mat-form-field> 
+      
+              <!-- Email -->
+              <mat-form-field class="example-full-width">
+                <mat-label>SR Number</mat-label>
+                <input matInput placeholder="SR Number" formControlName="sr_number">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Case Number</mat-label>
+                <input matInput placeholder="Case Number" formControlName="mcaseno">
+                <mat-error *ngIf="handleError('mcaseno', 'required')">
+                  Case Number is required. Case Number can be same as SR Number if case is just filed.
+                </mat-error> 
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Case Year</mat-label>
+                <input matInput placeholder="Case Year" formControlName="mcaseyr">
+                <mat-error *ngIf="handleError('mcaseyr', 'required')">
+                  Case Year is required
+                </mat-error> 
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+              <mat-label>Filed By</mat-label>
+                <input matInput placeholder="Filed By" formControlName="filed_by">
+                <mat-error *ngIf="handleError('filed_by', 'required')">
+                  Filed By is required
+                </mat-error> 
+              </mat-form-field>
+             <mat-form-field>
+              <mat-label>Appearing For</mat-label>
+              <mat-select [(value)]="selectedAppearing" formControlName="appearing_for">
+                <mat-option [value]="appearingArray" *ngFor="let appearingArray of appearingArray">{{appearingArray}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="handleError('appearing_for', 'required')">
+                Appearing for is required
+              </mat-error> 
+             <!-- <mat-error *ngIf="handleError('section', 'required')">
+                Section is required
+              </mat-error> -->
+            </mat-form-field> 
+            <mat-form-field class="example-full-width">
+              <mat-label>Client Name</mat-label>
+              <input matInput placeholder="Client Name" formControlName="client_name">
+              <mat-error *ngIf="handleError('client_name', 'required')">
+                Client Name is required
+              </mat-error> 
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Client Address</mat-label>
+              <input matInput placeholder="Client Address" formControlName="client_address">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Client Phone</mat-label>
+              <input matInput placeholder="Client Phone" formControlName="client_ph">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Client Email</mat-label>
+              <input matInput placeholder="Client Email" formControlName="client_email">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Referrer Name</mat-label>
+              <input matInput placeholder="Referrer Name" formControlName="referrer_name">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Referrer Email</mat-label>
+              <input matInput placeholder="Referrer Email" formControlName="referrer_email">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Referrer Phone</mat-label>
+              <input matInput placeholder="Referrer Phone" formControlName="referrer_ph">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Referrer Address</mat-label>
+              <input matInput placeholder="Referrer Address" formControlName="referrer_address">
+            </mat-form-field>
+              <!-- Section -->
+            <!--  <mat-form-field>
+                <mat-label>Section</mat-label>
+                <mat-select [(value)]="selected" formControlName="section">
+                  <mat-option [value]="sectioinArray" *ngFor="let sectioinArray of SectioinArray">{{sectioinArray}}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="handleError('section', 'required')">
+                  Section is required
+                </mat-error>
+              </mat-form-field>  -->
+    
+            </div>
+          </mat-card>
+      
+          <!-- Right block -->
+          <mat-card class="TwoColumnRight">
+            <div class="controlers-wrapper">
+              <!-- Add subjects -->
+             <!-- <mat-form-field class="multiple-items">
+                <mat-chip-list #chipList>
+                  <mat-chip *ngFor="let subjectArray of subjectArray" [selectable]="selectable" [removable]="removable"
+                    (removed)="remove(subjectArray)">
+                    {{subjectArray.name}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                  </mat-chip>
+                  <input placeholder="Add subject" [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                    (matChipInputTokenEnd)="add($event)">
+                </mat-chip-list>
+                <i class="material-icons tooltip-info" matTooltip="Enter subject name and press enter to add subjects">
+                  info
+                </i>
+              </mat-form-field> 
+      
+              <!-- Date of birth -->
+              <mat-form-field>
+                <mat-label>Case Filed On</mat-label>
+                <input matInput readonly [matDatepicker]="picker1" placeholder="Case Filed on" formControlName="case_filed_on"
+                  (dateChange)="formatDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+               <!-- <mat-error *ngIf="handleError('dob', 'required')">
+                  Date of birth is required
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Corum</mat-label>
+                <input matInput placeholder="Corum" formControlName="corum">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Bata Filed On</mat-label>
+                <input matInput readonly [matDatepicker]="picker2" placeholder="Bata Filed on" formControlName="bata_filed_on"
+                  (dateChange)="formatDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+               <!-- <mat-error *ngIf="handleError('dob', 'required')">
+                  Date of birth is required
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Bata SR number</mat-label>
+                <input matInput placeholder="Bata SR number" formControlName="bata_SR_number">
+              </mat-form-field>
+              
+              <mat-form-field class="example-full-width">
+                <mat-label>Lower Court Details</mat-label>
+                <input matInput placeholder="Lower Court Details" formControlName="lower_court_details">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Records Received On</mat-label>
+                <input matInput readonly [matDatepicker]="picker3" placeholder="Records received on" formControlName="records_received_date"
+                  (dateChange)="formatDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+               <!-- <mat-error *ngIf="handleError('dob', 'required')">
+                  Date of birth is required
+                </mat-error> -->
+              </mat-form-field>
+             <!-- <mat-form-field class="example-full-width">
+                <mat-label>Case Status</mat-label>
+                <input matInput placeholder="Case Status" formControlName="case_status">
+              </mat-form-field> -->
+              <mat-form-field> 
+                <mat-label>Case Status</mat-label>
+                <mat-select [(value)]="selectedStatus" formControlName="case_status">
+                  <mat-option [value]="statusArray" *ngFor="let statusArray of statusArray">{{statusArray}}
+                  </mat-option>
+                </mat-select>
+               <!-- <mat-error *ngIf="handleError('section', 'required')">
+                  Section is required
+                </mat-error> -->
+              </mat-form-field> 
+
+              <mat-form-field>
+                <mat-label>Result</mat-label>
+                <mat-select [(value)]="selectedResult" formControlName="result">
+                  <mat-option [value]="resultArray" *ngFor="let resultArray of resultArray">{{resultArray}}
+                  </mat-option>
+                </mat-select>
+               <!-- <mat-error *ngIf="handleError('section', 'required')">
+                  Section is required
+                </mat-error> -->
+              </mat-form-field> 
+              <mat-form-field>
+                <mat-label>Copy Application Interim Date</mat-label>
+                <input matInput readonly [matDatepicker]="picker4" placeholder="Copy App Interim Date" formControlName="copy_app_interim_date"
+                  (dateChange)="formatDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                <mat-datepicker #picker4></mat-datepicker>
+               <!-- <mat-error *ngIf="handleError('dob', 'required')">
+                  Date of birth is required
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Copy Application Final Date</mat-label>
+                <input matInput readonly [matDatepicker]="picker5" placeholder="Copy App Final Date" formControlName="copy_app_final_date"
+                  (dateChange)="formatDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                <mat-datepicker #picker5></mat-datepicker>
+               <!-- <mat-error *ngIf="handleError('dob', 'required')">
+                  Date of birth is required
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Copy Application Received Date</mat-label>
+                <input matInput readonly [matDatepicker]="picker6" placeholder="Copy App Received Date" formControlName="copy_app_received"
+                  (dateChange)="formatDate($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                <mat-datepicker #picker6></mat-datepicker>
+               <!-- <mat-error *ngIf="handleError('dob', 'required')">
+                  Date of birth is required
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Copy Application Final Type</mat-label>
+                <input matInput placeholder="Copy App final Type" formControlName="copy_app_final_type">
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Copy Application Final Number</mat-label>
+                <input matInput placeholder="Copy App final No." formControlName="copy_app_final_no">
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Case Progress</mat-label>
+                <mat-select [(value)]="selectedProgress" formControlName="case_progress">
+                  <mat-option [value]="progressArray" *ngFor="let progressArray of progressArray">{{progressArray}}
+                  </mat-option>
+                </mat-select>
+               <mat-error *ngIf="handleError('case_progress', 'required')">
+                Case Progress is required
+                </mat-error>
+              </mat-form-field> 
+            </div>
+          </mat-card>
+      <!-- Submit & Reset -->
+          <div class="submit">
+            <button mat-flat-button color="warn">Update</button>
+          </div>
+    </form>
+  </div>
+  
