@@ -20,6 +20,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
    imports: [
@@ -41,6 +42,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
+      MatTabsModule,
       MatPaginatorModule,
       MatSortModule
    ],
@@ -61,6 +63,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
       MatChipsModule,
       MatTooltipModule,
       MatTableModule,
+      MatTabsModule,
       MatPaginatorModule,
       MatSortModule
    ],

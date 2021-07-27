@@ -16,6 +16,9 @@ import { UsersRegisterComponent } from './components/users-register/users-regist
 import { UsersLoginComponent } from './components/users-login/users-login.component';
 import { UserNavigationComponent } from './components/user-navigation/user-navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { CaseFilesComponent } from './components/case-files/case-files.component';
+import { CommunicationDetailsComponent } from './components/communication-details/communication-details.component';
+import { AdditionalDetailsComponent } from './components/additional-details/additional-details.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     UsersRegisterComponent,
     UsersLoginComponent,
     UserNavigationComponent,
-    HomePageComponent
+    HomePageComponent,
+    CaseFilesComponent,
+    CommunicationDetailsComponent,
+    AdditionalDetailsComponent
   ],
   imports: [
     BrowserModule,

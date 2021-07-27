@@ -7,3 +7,14 @@
 .mat-elevation-z8{
     overflow-x: auto;
 }
+
+.search-div{
+  margin: 10px;
+}
+
+.search-form-field{
+ width:60%;
+}
+.right-align{
+  float: right;
+}

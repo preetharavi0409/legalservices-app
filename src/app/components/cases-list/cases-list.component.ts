@@ -24,7 +24,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { Router } from '@angular/router';
-
+import { MatTableExporterDirective } from 'mat-table-exporter';
 
 @Component({
   selector: 'app-cases-list',
@@ -53,6 +53,12 @@ export class CasesListComponent implements OnInit {
   searchKey!: string;
   ListData : any = [];
   userName = "";
+  @ViewChild(MatTableExporterDirective)
+  matTableExporter!: MatTableExporterDirective;
+  importAsXlsx(){
+  this.matTableExporter.exportTable('xlsx', {fileName:'CaseList', sheet: 'Cases'});
+  }
+
   constructor(private caseApi: ApiService, private _router: Router) {
 
     this.caseApi.getUserName().subscribe(data => {this.userName = data.toString();},

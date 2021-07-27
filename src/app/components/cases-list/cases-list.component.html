@@ -11,15 +11,18 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  <button mat-mini-fab color="primary" (click)="sendCauseList()">
+  <button mat-mini-fab color="primary" (click)="sendCauseList()" class="right-align">
     <mat-icon>email</mat-icon>
+   </button>
+   <button mat-mini-fab color="primary" (click)="importAsXlsx()" class="right-align">
+    <mat-icon>cloud_download</mat-icon>
    </button>
 </div>  
   <p *ngIf="CaseData.length <= 0" class="no-data">There is no case added yet!</p>
   
   <div class="container" *ngIf="CaseData.length > 0">
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource" multiTemplateDataRows matSort >
+      <table mat-table matTableExporter [dataSource]="dataSource" multiTemplateDataRows matSort >
         <ng-container matColumnDef="_id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Case ID </th>
           <td mat-cell *matCellDef="let element"> {{element._id}} </td>
