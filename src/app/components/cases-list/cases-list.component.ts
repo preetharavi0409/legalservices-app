@@ -53,8 +53,7 @@ export class CasesListComponent implements OnInit {
   searchKey!: string;
   ListData : any = [];
   userName = "";
-  @ViewChild(MatTableExporterDirective)
-  matTableExporter!: MatTableExporterDirective;
+  @ViewChild(MatTableExporterDirective) matTableExporter!: MatTableExporterDirective;
   importAsXlsx(){
   this.matTableExporter.exportTable('xlsx', {fileName:'CaseList', sheet: 'Cases'});
   }
